@@ -1,7 +1,8 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: "https://api.chucknorris.io/jokes/"
+    baseURL: "https://api.quotable.io/",
+    
 });
 
 export const postform= axios.create({

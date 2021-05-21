@@ -1,6 +1,6 @@
 import {api, postform} from "../../../service/api";
 
-async function getRandomJoke() {
+async function getRandomQuote() {
   const request = await api.get("random")
   const response = request.data
   return response
@@ -11,16 +11,23 @@ let Home = {
   is_private: false,
 
   render: async () => {
-    const jokes = await getRandomJoke();
+    const quotes = await getRandomQuote();
+    let date = new Date().toDateString()
 
       let view = /*html*/`
           <div>
-            <h1>primeira pagina</h1>
-            <img src=${jokes.icon_url}>
-            <p>${jokes.value}</p>
+            <h1>Your quote of the day:</h1>
+            <h3> ${date}</h3>
+
+           <div class="quote">
+            <p>${quotes.content}</p>
+            <p>${quotes.author}</p>
+          </div>
+
           </div>
           <hr>
-          <div>
+          <div class="sub">
+          <h2> Subscribe for more</h2>
             <form id="form">
               <input type="text" placeholder="name" id="name">
               <input type="text" placeholder="email" id="email">
@@ -29,6 +36,7 @@ let Home = {
 
             </form>
           </div>
+          
       `;
 
       return view
